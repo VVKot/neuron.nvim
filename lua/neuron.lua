@@ -71,12 +71,14 @@ function M.enter_link()
 end
 
 function M.add_all_virtual_titles(buf)
+  buf = buf or 0
   for ln, line in ipairs(api.nvim_buf_get_lines(buf, 0, -1, true)) do
     M.add_virtual_title_current_line(buf, ln, line)
   end
 end
 
 function M.add_virtual_title_current_line(buf, ln, line)
+  buf = buf or 0
   if type(line) ~= "string" then
     return
   end
@@ -110,6 +112,7 @@ function M.add_virtual_title_current_line(buf, ln, line)
 end
 
 function M.update_virtual_titles(buf)
+  buf = buf or 0
   api.nvim_buf_clear_namespace(buf, ns, 0, -1)
   M.add_all_virtual_titles()
 end
